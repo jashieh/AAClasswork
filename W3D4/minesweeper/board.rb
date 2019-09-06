@@ -4,6 +4,7 @@ class Board
     def initialize
         @board = Array.new(9) {Array.new(9)}
         @size = @board.length 
+        @last_move = []
     end
 
     attr_reader :size
@@ -80,16 +81,20 @@ class Board
         end
     end
 
+    def lose
+        row, col = @last_move
+        p "test"
+        return @board[row][col].type == "*" if (row != nil && col != nil)
+    end
+
     def run 
         fill_board
-        lose = false
         until lose 
             hidden_board
             pos = get_move
-            p pos 
-            lose = true if @board[pos[0],pos[1]] == "*"
-            p lose
+            @last_move = pos 
         end
+        hidden_board
         puts "you lose"
     end
 
