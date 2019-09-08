@@ -83,7 +83,6 @@ class Board
 
     def lose
         row, col = @last_move
-        p "test"
         return @board[row][col].type == "*" if (row != nil && col != nil)
     end
 
