@@ -1,8 +1,8 @@
 require "singleton"
+require_relative "piece"
 
 class NullPiece < Piece
   include Singleton
-  def initialize(a,b,c)
-    super
+  def initialize
   end
 end
