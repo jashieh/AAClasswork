@@ -5,7 +5,7 @@ class King < Piece
   include Stepable
   
   def symbol
-    "♛".colorize(color)
+    "♕".colorize(color)
   end
 
   def move_diffs

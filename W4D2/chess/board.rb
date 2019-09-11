@@ -10,11 +10,11 @@ require_relative 'nullpiece'
 class Board
   attr_reader :board, :sentinel
 
-  def initialize
+  def initialize(new_board = true)
     @sentinel = NullPiece.instance
     @board = Array.new(8) {Array.new(8,@sentinel)}
 
-    insert_pieces
+    insert_pieces if new_board 
   end 
 
   def insert_pieces
@@ -23,8 +23,8 @@ class Board
     (0...board.length).each { |i| board[1][i] = Pawn.new(:black,self,[1,i]) }
 
     white_pieces = [Rook,Knight,Bishop,Queen,King,Bishop,Knight,Rook] 
-    white_pieces.each_with_index { |piece,i| board[7][i] = piece.new(:,self,[7,i]) }
-    (0...board.length).each { |i| board[6][i] = Pawn.new(:black,self,[6,i]) }
+    white_pieces.each_with_index { |piece,i| board[7][i] = piece.new(:white,self,[7,i]) }
+    (0...board.length).each { |i| board[6][i] = Pawn.new(:white,self,[6,i]) }
   end
 
   def [](pos)
@@ -38,7 +38,7 @@ class Board
   end
 
   def move_piece(color, start_pos, end_pos)
-    if !self[start_pos].is_a?(Piece) 
+    if !self[start_pos].empty?
       raise 'no piece at this position'
       return false 
     elsif self[start_pos].color != color
@@ -72,6 +72,15 @@ class Board
   end
 
   def in_check?(color)
+    king_pos = find_king(color)
+    opponent_pieces = board.flatten.select do |piece|
+      piece.color != color && !piece.empty?
+    end
+
+    opponent_pieces.each do |piece|
+      return true if piece.moves.include?(king_pos)
+    end
+    false 
   end
 
   def find_king(color)
@@ -83,9 +92,15 @@ class Board
   end
 
   def pieces
+    board.flatten.reject { |piece| piece.empty?}
   end
 
   def dup
+    copy = Board.new(false)
+    pieces.each do |piece|
+      piece.class.new(piece.color, new_board, piece.pos)
+    end
+    copy 
   end
 
 end

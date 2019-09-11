@@ -3,7 +3,8 @@ require_relative "cursor"
 require "colorize"
 
 class Display
-  attr_reader :board 
+  attr_reader :board, :cursor
+
   def initialize(board)
     @board = board 
     @cursor = Cursor.new([0,0],board)
@@ -14,7 +15,11 @@ class Display
     (0...8).each do |i|
       row = [i]
       (0...8).each do |j|
-        row << board.board[i][j].symbol 
+        if [i,j] == @cursor.cursor_pos
+          row << board.board[i][j].symbol.red 
+        else
+          row << board.board[i][j].symbol 
+        end
       end
       puts row.join(" ")
     end
