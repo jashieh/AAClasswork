@@ -1,9 +1,13 @@
 require_relative 'piece'
+require_relative 'stepable'
 
-class Knight
+class Knight < Piece 
+  include Stepable
   
   def symbol
-  end
+    "N"
+  end 
+
   def move_diffs
     [[2,1],[2,-1],[-2,1],[-2,-1],
     [1,2],[-1,-2],[-1,2],[1,-2]]
