@@ -1,15 +1,20 @@
 require_relative 'piece'
+require_relative 'nullpiece'
 
 class Board
   attr_reader :board
 
   def initialize
+    # test = NullPiece(nil,nil,nil).instance
     @board = Array.new(8) {Array.new(8)}
-    (0...@board.length).each do |i|
-      (0...@board.length).each do |j|
-        @board[i][j] = Piece.new if i<=1 || i >=6
-      end
-    end
+
+
+    # (0...@board.length).each do |i|
+    #   (0...@board.length).each do |j|
+    #     @board[i][j] = Piece.new(nil,nil,nil) if i<=1 || i >=6
+    #   end
+    # end
+    @board[0][5] = Piece.new("b",@board,[0,5])
   end
 
   def [](pos)
@@ -30,6 +35,3 @@ class Board
     end
   end
 end
-
-b = Board.new
-b.move_piece([5,5],[0,5])
