@@ -1,13 +1,16 @@
-class Queen
+require_relative 'piece'
+require_relative 'slideable'
+
+class Queen < Piece 
   include Slideable 
 
   def symbol
-    super.to_s + "Q"
+    "Q"
   end
 
   protected
   def move_dirs
-    diagonal_dirs + horizontal_dirs
+    horizontal_dirs + diagonal_dirs 
   end
 
 end
