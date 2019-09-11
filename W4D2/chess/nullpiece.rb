@@ -8,7 +8,7 @@ class NullPiece < Piece
   end
 
   def symbol
-    "x"
+    "⌑"
   end
 
   def empty?

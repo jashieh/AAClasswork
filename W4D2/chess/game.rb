@@ -7,7 +7,7 @@ class Game
   def initialize
     @board = Board.new
     @display = Display.new(@board)
-    @players = [Player.new(:W,@display), Player.new(:B,@display)] 
+    @players = [Player.new(:white,@display), Player.new(:black,@display)] 
     @current_player = @players[0]
   end
 
@@ -15,12 +15,22 @@ class Game
 
     while true
       @display.render 
-      puts "#{@players[0].color} turn"
-      puts "Enter a position of a piece [row,col]"
-      start_pos = gets.chomp.split(",").map(&:to_i)
-      puts "Enter a position to move to [row,col]"
-      end_pos = gets.chomp.split(",").map(&:to_i)
-      swap_turn! if @board.move_piece(@players[0].color, start_pos, end_pos)
+      puts "#{@players[0].color} select a position of a piece (Press space to select)"
+      key_input = @display.cursor.get_input
+      
+      if key_input != nil
+        #if board.in_check?(@players[0].color)
+        start_pos = key_input
+        key_input2 = nil 
+        puts "#{@players[0].color} select a position to move to (Press space to select)"
+        while key_input2 == nil 
+          key_input2 = @display.cursor.get_input
+          @display.render 
+        end
+        end_pos = key_input2
+        swap_turn! if @board.move_piece(@players[0].color, start_pos, end_pos)
+      end
+
     end
     
 

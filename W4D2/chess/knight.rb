@@ -5,7 +5,7 @@ class Knight < Piece
   include Stepable
   
   def symbol
-    "N"
+    "♘".colorize(color)
   end 
 
   def move_diffs

@@ -89,6 +89,10 @@ class Cursor
     when :right
       update_pos(MOVES[:right])
       return nil
+    when :ctrl_c
+      Process.exit
+    when :space
+      return cursor_pos
     end
       
   end
@@ -96,6 +100,13 @@ class Cursor
   def update_pos(diff)
     dx,dy = diff
     x,y = @cursor_pos
-    @cursor_pos = [x+dx,y+dy]
+    new_pos = [x+dx,y+dy]
+
+    if board.valid_pos?(new_pos)
+      @cursor_pos = [x+dx,y+dy]
+      return true
+    end
+    false 
+
   end
 end
