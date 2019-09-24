@@ -6,13 +6,13 @@ require 'active_support/inflector'
 class SQLObject
   def self.columns
     # ...
-    @@table ||= DBConnection.execute2(<<-SQL)
+    @table ||= DBConnection.execute2(<<-SQL)
     SELECT
       *
     FROM
       #{self.table_name}
     SQL
-    @@table[0].map!(&:to_sym)
+    @table[0].map!(&:to_sym)
   end
   
   def self.finalize!
