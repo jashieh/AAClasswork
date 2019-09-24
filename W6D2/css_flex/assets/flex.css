@@ -1,5 +1,4 @@
 body {
-  /* If the user cannot load the Arial font, the sans-serif font is used */
   font-family: Arial, sans-serif;
   background-color: #FEFFF1;
 }
@@ -13,30 +12,23 @@ h2 {
   font-size: 32px;
 }
 
-/* This selector selects ALL anchor tag children of ALL list elements that
-are children of an Unordered Lsit element */
 ul li a, figcaption a {
   text-decoration: none;
   color: inherit;
 }
 
-/* This selector selects only IMMEDIATE (1 level deep) image element children
-of the header element */
 header > img {
   width: 100px;
-  float: left;
+  /* float: left; */
 }
 
-.stop-float:after {
-  content: "";
-  display: block;
-  clear:both;
+header {
+  display: flex; 
+  justify-content: space-between;
 }
 
-/* Selects all elements with the class attribute "ingredients-list" */
 .ingredients-list {
 
-  /* The list style property is shorthand for multiple list-style properties*/
   list-style: square inside;
 }
 
@@ -80,12 +72,16 @@ h2 + .user_review {
 }
 
 nav {
-    display: inline-block;
-    float: right;
+    /* float: right; */
+    /* display: flex;  */
 }
 
+nav ul {
+  display: flex;
+}
 nav ul li {
-    display:  inline-block;
+    /* display: inline-block; */
+    /* display: flex;  */
 }
 
 nav ul li a {
@@ -94,41 +90,33 @@ nav ul li a {
 }
 
 body {
-    margin: 0 auto; /* Common Centering Technique */
-    width: 900px;
-}
-
-section {
-    width: 700px;
-    display: inline-block;
-    vertical-align: top;
+  margin: 0 auto;
+    width: 60%;
 }
 
 aside {
-    width: 180px;
-    margin-right: 15px;
     display: inline-block;
 }
 
 .ingredients-list li {
- margin: 15px 0px;
+    margin: 15px 0px;
 }
 
 input[type="text"], select {
-  display: block;
-  width: 175px;
+    display: block;
+    width: 175px;
 }
 
 select {
-  margin: 10px 0;
-  width: 180px;
+    margin: 10px 0;
+    width: 180px;
 }
 
 textarea {
-  width: 350px;
+    width: 350px;
 }
 
 label {
-  display: block;
+    display: block;
 }
 
