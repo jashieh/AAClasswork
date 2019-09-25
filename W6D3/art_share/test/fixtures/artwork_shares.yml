@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: artwork_shares
+#
+#  id         :bigint           not null, primary key
+#  artwork_id :integer          not null
+#  viewer_id  :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artwork_id: 1
+  viewer_id: 1
+
+two:
+  artwork_id: 1
+  viewer_id: 1
