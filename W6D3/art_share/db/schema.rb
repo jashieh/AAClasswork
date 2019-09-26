@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_25_215631) do
+ActiveRecord::Schema.define(version: 2019_09_26_211630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_25_215631) do
     t.integer "viewer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "favorite"
     t.index ["artwork_id", "viewer_id"], name: "index_artwork_shares_on_artwork_id_and_viewer_id", unique: true
     t.index ["artwork_id"], name: "index_artwork_shares_on_artwork_id"
     t.index ["viewer_id"], name: "index_artwork_shares_on_viewer_id"
@@ -31,8 +32,34 @@ ActiveRecord::Schema.define(version: 2019_09_25_215631) do
     t.integer "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "favorite"
+    t.integer "collection_id"
     t.index ["artist_id", "title"], name: "index_artworks_on_artist_id_and_title", unique: true
     t.index ["artist_id"], name: "index_artworks_on_artist_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "artwork_id", null: false
+    t.string "body", null: false
+    t.index ["artwork_id"], name: "index_comments_on_artwork_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "likeable_type"
+    t.bigint "likeable_id"
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

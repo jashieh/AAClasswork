@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
   def index
-    users = User.all 
-    render json: users
+    if params.has_key?(:username)
+      user = User.where(username: params[:username])
+      render json: user 
+    else
+      users = User.all 
+      render json: users
+    end
   end
 
   def user_params
@@ -31,6 +36,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
+    
     if user
       render json: user
     else
@@ -44,6 +50,26 @@ class UsersController < ApplicationController
     if user
       user.update(user_params)
       render json: user 
+    else
+      render json: user.errors.full_messages, status:400 
+    end
+  end
+
+  def favorites 
+    user = User.find(params[:id])
+
+    if user
+      render json: user.artist_favorites
+    else
+      render json: user.errors.full_messages, status:400 
+    end
+  end
+
+  def favorited
+     user = User.find(params[:id])
+
+    if user
+      render json: user.viewer_favorited
     else
       render json: user.errors.full_messages, status:400 
     end
