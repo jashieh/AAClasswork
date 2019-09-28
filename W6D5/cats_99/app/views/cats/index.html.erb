@@ -1,0 +1,12 @@
+<h1>>^.^< Cats! >^.^<</h1>
+
+<ul>
+  <%@cats.each do |cat|%>
+  <li> 
+    Name: <%=cat.name%>
+    <a href="<%= cat_url(cat) %>"> Show cat page</a>
+  </li>
+  <%end%>
+</ul>
+
+<a href="<%= new_cat_url %>">Create a new Cat</a>
