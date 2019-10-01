@@ -1,0 +1,20 @@
+<h2>Create New User</h2>
+<br>
+<ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+
+<form action="<%=users_url%>" method="post">
+  <input type="hidden" name="_method" value="post">
+  <label>Email
+    <input type="text" name="user[email]" value="">
+  </label>
+  <label>Password
+    <input type="password" name="user[password]" value="">
+  </label>
+  <br><br>
+  <input type="submit" value="Create User">
+</form>
+
