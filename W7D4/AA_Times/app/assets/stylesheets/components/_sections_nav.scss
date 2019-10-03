@@ -1,0 +1,18 @@
+.bar {
+  border-bottom: 2px solid $light-gray;
+  padding: 10px;
+}
+
+.pages li {
+  display: inline;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.pages li a {
+  text-decoration: none;
+}
+
+.pages li a:hover {
+  text-decoration: underline;
+}
