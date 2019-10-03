@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
     render :new
   end
@@ -18,6 +19,4 @@ class SessionsController < ApplicationController
     session[:session_token] = nil
     redirect_to new_session_url
   end
-
-
 end
