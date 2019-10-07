@@ -1,0 +1,25 @@
+<% if type == :new %>
+  <% action = subs_url %>
+  <% button = "Create New Sub" %>
+<% else %>
+  <% action = sub_url(@sub) %>
+  <% button = "Update Sub" %>
+<% end %>
+
+<form action="<%=action%>" method="post">
+  <input type="hidden" name="authenticity_token" 
+  value="<%=form_authenticity_token%>">
+
+  <% if type == :edit %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+
+  <label for="">Title
+    <input type="text" name="sub[title]" value="<%=@sub.title%>">
+  </label>
+  <label for="">Description
+    <input type="text" name="sub[description]" value="<%=@sub.description%>">
+  </label>
+
+  <input type="submit" value="<%=button%>">
+</form>

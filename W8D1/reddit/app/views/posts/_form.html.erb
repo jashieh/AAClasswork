@@ -1,0 +1,44 @@
+<% if type == :new %>
+  <% action = posts_url %>
+  <% button = "Create New Post" %>
+<% else %>
+  <% action = post_url(@post) %>
+  <% button = "Update Post" %>
+<% end %>
+
+<form action="<%=action%>" method="post">
+  <input type="hidden" name="authenticity_token" 
+  value="<%=form_authenticity_token%>">
+
+  <% if type == :edit %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+
+  <label for="">Title
+    <input type="text" name="post[title]" value="<%=@post.title%>">
+  </label>
+  <br>
+  <label for="">URL
+    <input type="text" name="post[url]" value="<%=@post.url%>">
+  </label>
+  <br>
+  <label for="">Content
+    <textarea name="post[content]" cols="30" rows="10">
+      <%= @post.content %>
+    </textarea>
+  </label>
+  <br>
+  <br>
+
+  <label for="">Sub
+    <ul>
+      <% Sub.all.each do |sub| %>
+        <input type="checkbox" name="post[sub_id][]" value="<%=sub.id%>"
+        <%= @post.subs.ids.include?(sub.id) ? "checked" : "" %>><%= sub.title %>
+        <br>
+      <% end %>
+    </ul>
+  </label>
+
+  <input type="submit" value="<%=button%>">
+</form>
