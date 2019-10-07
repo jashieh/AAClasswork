@@ -1,0 +1,73 @@
+<h1><%= @post.title %></h1>
+<h3><%= @post.author.username %></h3>
+
+<a href="<%=subs_url%>">All Subs</a>
+<br>
+<% if current_user.id == @post.author.id %>
+    <a href="<%=edit_post_url(@post)%>">Edit Post</a>
+    <form action="<%=post_url(@post)%>" method="post">
+      <input type="hidden" name="authenticity_token" 
+        value="<%=form_authenticity_token%>">
+
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Post">
+    </form>
+<% end %>
+<br>
+<label for="">Content:
+<br>
+<body>
+  <%= @post.content %>
+</body>
+</label>
+<br>
+<br>
+<br><br>
+
+
+
+<label for="">
+  Comments: 
+  <br>
+  <a href="<%=new_post_comment_url(@post)%>">Comment On This Post</a> 
+  <ul>
+    <% @post.comments.each do |comment| %>
+      
+      <a href="<%=comment_url(comment)%>"><%= comment.content %></a>
+
+     <% if comment.child_comments %><ul>
+        <% comment.child_comments.each do |child_comment| %>
+        
+        <a href="<%=comment_url(child_comment)%>"><%= child_comment.content %></a>
+        <% end %></ul>
+       <ul>
+        
+       </ul>
+     <% end %>
+     
+      
+      <form action="<%=comment_url(comment)%>" method="post">
+        <input type="hidden" name="authenticity_token"
+          value="<%=form_authenticity_token%>">
+
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Remove Comment">
+      </form>
+      
+    <% end %>
+  </ul>
+</label>
+
+
+<br>
+<br>
+
+<label for="">Subs
+<ul>
+  <% @post.subs.each do |sub| %>
+    <li><a href="<%=sub_url(sub)%>"><%=sub.title%></a></li>
+  <% end %>
+</ul>
+</label>
+
+
