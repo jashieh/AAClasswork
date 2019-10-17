@@ -1,0 +1,61 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  /* animation: spin 10s linear infinite; */
+
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+.board {
+  display: grid;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px;
+  justify-content: center;
+  /* justify-content: left; */
+  /* align-items: right; */
+  /* margin: 0 auto; */
+  margin-right:4.5%;
+  width: 100%;
+  flex-wrap: wrap;
+  color: aquamarine;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  /* margin: */
+  /* padding: 10px; */
+  /* width: 100px; */
+}
+
+.hover {
+  background: yellow;
+}
+
+ul .x {
+  /* background: red; */
+  background-image: url("Youngjun_Na.jpg") ;
+}
+
+ul .o {
+  /* background: blue; */
+  background-image: url("Braeden_Austgen.jpg") ;
+}
+
+.gameover {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+}
+
+.highlight {
+  border-color: green;
+
+}
