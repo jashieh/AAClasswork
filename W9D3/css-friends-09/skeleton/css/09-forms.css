@@ -1,0 +1,23 @@
+/* PHASE 9: Forms */
+.content-main .post {
+  border: 1px solid grey;
+  background: lightgrey;
+  /* float: inherit; */
+  /* display: flex; */
+  /* justify-content: center; */
+}
+.content-main .post-thumb {
+  display: inline-block;
+}
+.content-main .post .post-label {
+  padding: 50px;
+}
+
+.content-main .post .post-text {
+  display: block;
+  margin: 25px;
+  outline: 1px solid black;
+  /* padding: 10px; */
+  width: 90%;
+  background: white;
+}
