@@ -99,10 +99,10 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
   }
 };
 
-// absurdBubbleSort([3, 2, 1], function (arr) {
-//   console.log("Sorted array: " + JSON.stringify(arr));
-//   reader.close();
-// });
+absurdBubbleSort([3, 2, 1], function (arr) {
+  console.log("Sorted array: " + JSON.stringify(arr));
+  reader.close();
+});
 
 // addNumbers.myBind(arr)
 Function.prototype.myBind = function(context) {
