@@ -1,5 +1,6 @@
 import React from 'react';
 import PokemonIndexItem from './pokemon_index_item';
+import PokemonFormContainer from './pokemon_form_container';
 
 export default class PokemonIndex extends React.Component {
 
@@ -15,8 +16,9 @@ export default class PokemonIndex extends React.Component {
     const pokemon = this.props.pokemon;
     return (
       <ul>
+        <PokemonFormContainer /> 
         {pokemon.map(poke => (
-          <PokemonIndexItem key={poke.id} pokemon={poke} />
+          <PokemonIndexItem key={poke.id} poke={poke} />
         ))}
       </ul>
     );
