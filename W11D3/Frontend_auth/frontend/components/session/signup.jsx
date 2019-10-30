@@ -1,0 +1,60 @@
+import React from 'react';
+
+export default class Signup extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            email: "",
+            password: "",
+        };
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInput(type) {
+        return (e) => this.setState({ [type]: e.target.value });
+    }   
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.createNewUser(this.state)
+            .then(() => this.props.history.push('/chirps'));
+    }
+
+    render() {
+        return(
+            <div className="session-form">
+                <h2>Sign Up!</h2>
+                <form>
+                    <label>Username:
+                        <input 
+                            onChange={this.handleInput('username')} 
+                            type="text" 
+                            value={this.state.username}/>
+                    </label>
+                </form>
+
+                <form>
+                    <label>Email:
+                        <input 
+                            onChange={this.handleInput('email')} 
+                            type="text" 
+                            value={this.state.email}/>
+                    </label>
+                </form>
+
+                <form>
+                    <label>Password:
+                        <input 
+                            onChange={this.handleInput('password')} 
+                            type="password" 
+                            value={this.state.password}/>
+                    </label>
+                </form>
+
+                <input onClick={this.handleSubmit} type="submit" />
+            </div>
+        );
+    }
+}
