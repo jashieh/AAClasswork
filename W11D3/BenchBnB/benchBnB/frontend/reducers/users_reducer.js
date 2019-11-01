@@ -1,6 +1,4 @@
-import {
-  RECEIVE_CURRENT_USER
-} from "../actions/session_actions";
+import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 
 
 const usersReducer = (state={}, action) => {
@@ -12,10 +10,6 @@ const usersReducer = (state={}, action) => {
     default:
       return state;
   }
-
-
-
 };
-
 
 export default usersReducer;
