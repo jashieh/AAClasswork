@@ -1,5 +1,5 @@
 @benches.each do |bench|
     json.set! bench.id do
-        json.extract! bench, :id, :description, :lat, :lng 
+        json.extract! bench, :id, :description,:lat, :lng, :seating 
     end
 end

@@ -5,7 +5,6 @@ export default class MarketManager {
     }
     
     updateMarkers(benches) {
-        console.log("time to update");
         const benchesObj = {};
         benches.forEach(bench => benchesObj[bench.id] = bench);
         
@@ -15,7 +14,6 @@ export default class MarketManager {
         Object.keys(this.markers)
         .filter(benchId => !benchesObj[benchId])
         .forEach((benchId) => this.removeMarker(this.markers[benchId]))
-        
     }
     
     createMarkerFromBench(bench) {
@@ -28,5 +26,11 @@ export default class MarketManager {
         
         marker.addListener('click', () => this.handleClick(bench));
         this.markers[marker.benchId] = marker;
+    }
+
+    removeMarker(marker) {
+        console.log('remove');
+        this.markers[marker.benchId].setMap(null);
+        delete this.markers[marker.benchId];
     }
 }

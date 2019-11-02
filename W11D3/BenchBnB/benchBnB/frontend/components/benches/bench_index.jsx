@@ -7,7 +7,7 @@ export default class BenchIndex extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchBenches();
+        // this.props.fetchBenches();
     }
 
     render() {
@@ -15,6 +15,7 @@ export default class BenchIndex extends React.Component {
         if (Object.keys(this.props.benches).length === 0) {
             display = <div>nothing here</div>
         } else {
+            console.log(this.props.benches)
             display = Object.keys(this.props.benches).map(benchId => {
                 return (
                 <BenchIndexItem 
